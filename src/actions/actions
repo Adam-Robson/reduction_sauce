@@ -1,0 +1,17 @@
+export const loadStartAction = () => {
+  return {
+    type: 'load-start-action'
+  }
+}
+
+export const loadSuccessAction = () => {
+  return {
+    type: 'load-success-action'
+  }
+}
+
+export const loadErrorAction = () => {
+  return {
+    type: 'load-error-action'
+  };
+}
