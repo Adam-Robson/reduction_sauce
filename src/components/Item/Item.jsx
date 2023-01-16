@@ -1,8 +1,17 @@
 
-const Item = () => {
+const Item = ({ 
+  item, 
+  toggleItem
+}) => {
   return (
     <>
-      Item
+      <input 
+        type="checkbox"
+        value={ item.checked }
+        onChange={ () => toggleItem(!item.checked) } 
+      />
+      { item.id }
+      { item.body }
     </>
   );
 };

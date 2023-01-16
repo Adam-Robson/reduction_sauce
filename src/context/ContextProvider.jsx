@@ -1,16 +1,16 @@
-import { createContext, useReducer, useContext } from 'react';
+import { createContext, useReducer } from 'react';
 import { initialState, reducer } from '../components/reducers/reducer.js';
 import { log } from '../components/reducers/log.js';
 
 export const Context = createContext({
-  state: initialState,
+  state: initialState(),
   reducer
 });
 
-const ContextProvider = ({ children }) => {
+export const ContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(
     log(reducer),
-    initialState
+    initialState()
   );
   return (
     <Context.Provider value= { {
@@ -21,12 +21,3 @@ const ContextProvider = ({ children }) => {
     </Context.Provider>
   );
 };
-
-const useContextProvider = () => {
-  const context = useContext(Context);
-  context === 'undefined' ?
-    console.error('Context provider not found') :
-    context;
-};
-
-export { ContextProvider, useContextProvider };

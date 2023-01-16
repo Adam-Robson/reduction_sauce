@@ -23,22 +23,22 @@ export async function getItem(itemId) {
   return checkError(res);
 }
 
-export async function createItem(newItem) {
+export async function createItem(user_id, newItem) {
   const res = await client
     .from('reducer')
     .insert({
       ...newItem,
+      user_id
     })
   ;
   return checkError(res);
 }
 
-export async function updateItem(itemId, newText, newQty) {
+export async function updateItem(itemId, newItemBody) {
   const res = await client
     .from('reducer')
     .update({
-      newText,
-      newQty
+      newItemBody
     })
     .eq('id', itemId)
   ;

@@ -4,14 +4,31 @@ export const loadStartAction = () => {
   }
 }
 
-export const loadSuccessAction = () => {
+export const loadSuccessAction = (list) => {
   return {
-    type: 'load-success-action'
+    type: 'load-success-action',
+    list
   }
 }
 
-export const loadErrorAction = () => {
+export const loadErrorAction = (error) => {
   return {
-    type: 'load-error-action'
-  };
+    type: 'load-error-action',
+    error
+  }
+}
+
+export const itemBodyChangedAction = (body) => {
+  return {
+    body,
+    type: 'item-body-changed-action'
+  }
+}
+
+export const itemCheckedAction = () => {
+  return {
+    itemId,
+    checked,
+    type: 'item-checked-action'
+  }
 }

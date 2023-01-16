@@ -1,8 +1,22 @@
+import Item from '../Item/Item';
 
-const List = () => {
+const List = ({ list, handleCheckedById }) => {
   return (
     <>
-     List 
+      <ol>
+        {list.map(item => {
+          return <li key={ item.id }>
+            <Item item={ item }
+              handleItemChecked={
+                checked => {
+                  handleCheckedById(
+                    item.id,
+                    checked);
+                }
+              } /></li>;
+        })
+        }
+      </ol>
     </>
   );
 };

@@ -1,7 +1,11 @@
-export const initialState = {
-  loadMode: 'rest',
-  loadError: null,
-  list: []
+export const initialState = () => {
+  return {
+    loadMode: 'rest',
+    loadError: null,
+    newItemBody: '',
+    itemChecked: false,
+    list: []
+  };
 };
 
 export const reducer = (state, action) => {
@@ -16,20 +20,43 @@ export const reducer = (state, action) => {
     case 'load-success-action': {
       return {
         ...state,
-        loadMode: 'rest'
+        newList: action.newList,
+        loadMode: 'success'         
       };
     }
 
     case 'load-error-action': {
       return {
-        loadError: null
+        ...state,
+        loadError: action.error
       };
     }
     
+    case 'item-body-changed-action': {
+      return {
+        ...state,
+        newItemBody: action.newItemBody
+      };
+    }
+
+    case 'list-item-checked': {
+      const listCopy = [...state.list];
+      const index = listCopy.findIndex(item => item.id === action.itemId);
+      listCopy[index] = {
+        ...listCopy[index],
+        checked: action.checked
+      };
+      return {
+        ...state,
+        listCopy
+      };
+    }
+
     default:
-      console.error(`${action.type} is not supported`);
+      console.error(
+        `${action.type} is not supported`,
+        action
+      );
       return state;
-
-
   }
 };
